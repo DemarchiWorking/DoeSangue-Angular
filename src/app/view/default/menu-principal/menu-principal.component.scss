@@ -1,0 +1,44 @@
+.fundo-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: #F05B4A;
+  opacity: 70%; // clareamento FUNDO ALTERACAO
+
+  &.red-mode {
+    background-color: crimson;
+  }
+  &.dark-mode {
+    background-color: black;
+  }
+  &.blue-mode {
+    background-color: blue;
+  }
+}
+
+.menu-lateral-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-lateral {
+  padding: 100px;
+  background-color: #E66E47;
+  &.red-mode {
+    background-color: crimson;
+  }
+  &.dark-mode {
+    background-color: black;
+  }
+  &.blue-mode {
+    background-color: blue;
+  }
+}
+
+.logo-globotz{
+  width: 50px;
+  height: 50px;
+}
+

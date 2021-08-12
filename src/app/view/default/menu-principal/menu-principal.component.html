@@ -1,0 +1,50 @@
+<mat-drawer-container class="fundo-container" autosize>
+  <mat-drawer #drawer class="menu-lateral" mode="side" style="border: 10px solid; border-color: #fff">
+
+    <!-- links do Menu lateral -->
+    <a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a> <br>
+
+
+
+    <p *ngIf="showFiller"> <input type="text" placeholder="Usuario">  </p>
+    <p *ngIf="showFiller"> <input type="text" placeholder="Senha">  </p>
+    <button *ngIf="showFiller" mat-stroked-button color="primary"> Limpar  </button>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Logar
+    </button>
+  </mat-drawer>
+
+<mat-toolbar color="">
+    <mat-toolbar-row>
+       <span class=""></span>
+       <img class="logo-globotz" src="../../../../assets/DoeSg.png" mat-button (click)="drawer.toggle()">
+      <span class="example-spacer" style="padding: 20px;">Doe</span>
+
+   </mat-toolbar-row>
+</mat-toolbar>
+
+
+<BR>
+<!-- PAGINA INICIAL FUNDO DO APP -->
+<mat-grid-list alignItems="center" cols="3" rowHeight="2:1">
+  <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-tile ><mat-card style="width: 100%; height: 90%;">
+    Doe Sangue !
+
+
+
+    <!--<button mat-stroked-button color="primary"> </button> -->
+  </mat-card></mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+  <mat-grid-tile>5</mat-grid-tile>
+
+  <mat-grid-tile> </mat-grid-tile>
+
+
+</mat-grid-list><app-footer></app-footer>
+</mat-drawer-container>
+
+<!--
+
+-->

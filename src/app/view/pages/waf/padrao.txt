@@ -1,0 +1,58 @@
+lb
+
+
+server {
+    listen       8043 ssl http2;
+    server_name  ALTERACAO_1.g.globo;
+#	rewrite ^/$ https://ALTERACAO_2/ redirect;
+
+
+    ssl_certificate /mnt/projetos/ssl/gss/ALTERACAO_3.crt;
+    ssl_certificate_key /mnt/projetos/ssl/gss/ALTERACAO_4.key;
+    ssl_session_tickets off;
+    ssl_dhparam /mnt/projetos/ssl/gss/dhparam.txt;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+
+    location / {
+	    modsecurity on;
+            modsecurity_rules_remote f8004ee0-8809-4fda-a514-d5a2d8509df3:ec81a15d-e35a-4956-9a31-b9729d0e3594 "http://siteseguro-api.globoi.com/api/v1/sites/3af2111f-6ba6-4445-82bc-857181e5a727/rules/raw";
+            modsecurity_rules '
+                SecRuleEngine On
+                SecAuditLogType HTTPS
+                SecAuditLog http://siteseguro-api.globoi.com/api/v1/sites/3af2111f-6ba6-4445-82bc-857181e5a727/events
+                ';
+	    proxy_pass http://10.19.198.66;
+
+
+    }
+}
+
+#    EXEMPLO_DEFAULT : SCRIPT_ALTERACOES
+#A-0:load-balanc(LB) <sim> ou <nao> !
+#A-1:    server_name  guia.g.globo;
+#---------------------ALTERACAO_1("trocar o guia.g.globo pelo parametro X")
+
+#A-2:	rewrite ^/$ https://guia.g.globo/guia redirect;
+#-----------------ALTERACAO_2("trocar o https://guia.g.globo pelo parametro X e o '.../guia' pelo parametro Y")
+#-----------------Descobrir: HTTPS & HTTP ou APENAS HTTPS ??? (DEPENDENDO DA RESPOSTA CRIAR UM CICLO PRA CADA ESCOLHA)
+
+#A-3:    server_name  guia.g.globo;
+#---------------------ALTERACAO_3("trocar o 'guia.g.globo' pelo parametro X")
+
+
+#A-4:    ssl_certificate /mnt/projetos/ssl/gss/guia.g.globo.crt;
+#----------------------------------------------ALTERACAO_4("trocar O 'guia.g.globo.crt' pelo 'parametro X'+'.crt;' ")
+
+#A-5:     ssl_certificate_key /mnt/projetos/ssl/gss/guia.g.globo.key;
+#---------------------------------------------------ALTERACAO_5("trocar O 'guia.g.globo.key' pelo 'parametro X'+'.key;' ")
+
+#A-6:                modsecurity_rules_remote f8004ee0-8809-4fda-a514-d5a2d8509df3:ec81a15d-e35a-4956-9a31-b9729d0e3594 "http://siteseguro-api.globoi.com/api/v1/sites/3af2111f-6ba6-4445-82bc-857181e5a727/rules/raw";
+#---------------------------------------------
+#--------------------------------------------------ALTERACAO_5("trocar O 'guia.g.globo.key' pelo 'parametro X'+'.key;' ")
+
+
+
+#A-6 = [PARAMETRO ESPECIAL] Token-ID <<<<< <<<<<< <<<<<<< <<<<<<
+
